@@ -3,6 +3,7 @@ from random import choice
 from time import sleep
 import math
 
+//https://gsurma.medium.com/hex-creating-intelligent-opponents-with-minimax-driven-ai-part-1-%CE%B1-%CE%B2-pruning-cc1df850e5bd
 
 class NaiveAgent():
     """This class describes the default Hex agent. It will randomly send a
