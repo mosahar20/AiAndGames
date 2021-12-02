@@ -3,6 +3,8 @@ from random import choice
 from time import sleep
 import math
 import copy
+import numpy as np
+
 
 
 class NaiveAgent():
@@ -22,7 +24,7 @@ class NaiveAgent():
         """
         
         self._board_size = 0
-        self._board = []
+        # self._board = []
         self._colour = ""
         self._turn_count = 1
         self._choices = []
@@ -58,7 +60,8 @@ class NaiveAgent():
         data = self._s.recv(1024).decode("utf-8").strip().split(";")
         if (data[0] == "START"):
             self._board_size = int(data[1])
-            self._board = [["0" for i in range(self._board_size)] for j in range(self._board_size)]
+            # self._board = [["0" for i in range(self._board_size)] for j in range(self._board_size)]
+            self._board = np.full((self._board_size,self._board_size), "0")
             self._colour = data[2]
 
 
@@ -81,7 +84,7 @@ class NaiveAgent():
             
         else:
             newBoard = copy.deepcopy(self._board)
-            self.MinMax(newBoard, True, 2, -math.inf, math.inf)
+            self.MinMax(newBoard, True, 3, -math.inf, math.inf)
             msg = f"{self._best_move[0]},{self._best_move[1]}\n"
             
         
@@ -115,7 +118,7 @@ class NaiveAgent():
                     self._board[int(x)][int(y)] = self.opp_colour()
                 else: 
                     self._board[int(x)][int(y)] = self._colour
-            print(self._board)
+            # print(self._board)
             if (data[-1] == self._colour):
                 return 3
 
