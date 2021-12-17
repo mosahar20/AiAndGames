@@ -1,0 +1,1 @@
+python Hex.py “a=BestAgent;python agents\Group25.py” “a=OppAgent;python agents\GroupXX.py” 
